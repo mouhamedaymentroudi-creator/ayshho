@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Start 2026 with AYMEN - A special proposal for the new year">
+    <title>2026 with AYMEN - New Year Proposal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== CSS VARIABLES ==================== */
+        :root {
+            /* Color Palette - Warm, celebratory theme */
+            --primary: #FF6B9D;
+            --primary-dark: #E55583;
+            --secondary: #FFC371;
+            --accent: #C96DD8;
+            --bg-start: #FFF5F7;
+            --bg-end: #FFE6F0;
+            --text-dark: #2D1B3D;
+            --text-light: #6B4C7A;
+            --white: #FFFFFF;
+            --success: #4CAF50;
+            --error: #FF5252;
+            
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 5rem;
+            
+            /* Effects */
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow-soft: 0 8px 32px rgba(255, 107, 157, 0.15);
+            --shadow-medium: 0 12px 48px rgba(255, 107, 157, 0.25);
+            --shadow-strong: 0 20px 60px rgba(255, 107, 157, 0.35);
+            
+            /* Animations */
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* ==================== RESET & BASE STYLES ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            min-height: 100vh;
+        }
+        
+        /* ==================== ANIMATED BACKGROUND ==================== */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -200px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+        
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            top: 50%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        /* Particle System */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise 8s ease-in infinite;
+        }
+        
+        @keyframes rise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(0);
+            }
+        }
+        
+        /* ==================== CONTAINER & SECTIONS ==================== */
+        .app-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+        
+        .page.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .page.hidden {
+            display: none;
+        }
+        
+        /* ==================== GLASSMORPHISM CARD ==================== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            max-width: 500px;
+            width: 100%;
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ==================== LOGIN PAGE ==================== */
+        .login-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-sm);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: rgba(255, 255, 255, 0.6);
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+        }
+        
+        .form-input.error {
+            border-color: var(--error);
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: var(--spacing-xs);
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Button Styles */
+        .btn {
+            width: 100%;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.4);
+            color: var(--text-dark);
+            border: 2px solid var(--glass-border);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.02);
+        }
+        
+        /* ==================== PROPOSAL PAGE ==================== */
+        .proposal-content {
+            text-align: center;
+        }
+        
+        .greeting {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-md);
+            animation: fadeSlideIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .proposal-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-light);
+            animation: fadeSlideIn 0.8s ease-out 0.2s backwards;
+        }
+        
+        .proposal-highlight {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            margin: var(--spacing-sm) 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .proposal-subtext {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-lg);
+            animation: fadeSlideIn 0.8s ease-out 0.4s backwards;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .decorative-hearts {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.15;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .heart-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .heart-2 {
+            top: 20%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+        
+        .heart-3 {
+            bottom: 15%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+        
+        .heart-4 {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        
+        /* ==================== CERTIFICATE PAGE ==================== */
+        .certificate-container {
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .celebration-text {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeSlideIn 0.8s ease-out;
+        }
+        
+        .celebration-text h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .celebration-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+        
+        .certificate {
+            background: var(--white);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            border: 15px solid;
+            border-image: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)) 1;
+            animation: slideUp 1s ease-out;
+        }
+        
+        /* Decorative corners */
+        .certificate::before,
+        .certificate::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--primary);
+        }
+        
+        .certificate::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 20px 0 0 0;
+        }
+        
+        .certificate::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 20px 0;
+        }
+        
+        .certificate-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .certificate-badge {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .certificate-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .certificate-body {
+            text-align: center;
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .certificate-body p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+        
+        .certificate-name {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--spacing-md) 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .certificate-name::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        .certificate-statement {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin: var(--spacing-md) 0;
+            line-height: 1.8;
+        }
+        
+        .certificate-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-md);
+            border-top: 2px solid rgba(45, 27, 61, 0.1);
+        }
+        
+        .certificate-date,
+        .certificate-signature {
+            text-align: center;
+        }
+        
+        .certificate-date p,
+        .certificate-signature p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .certificate-date strong,
+        .certificate-signature strong {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-family: var(--font-display);
+        }
+        
+        .certificate-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .certificate-actions .btn {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            position: absolute;
+            animation: confetti-fall 3s ease-in-out forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .glass-card {
+                padding: var(--spacing-md);
+            }
+            
+            .greeting {
+                font-size: 2rem;
+            }
+            
+            .proposal-text {
+                font-size: 1.4rem;
+            }
+            
+            .proposal-highlight {
+                font-size: 1.8rem;
+            }
+            
+            .celebration-text h1 {
+                font-size: 2rem;
+            }
+            
+            .certificate {
+                padding: var(--spacing-md);
+                border-width: 10px;
+            }
+            
+            .certificate::before,
+            .certificate::after {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .certificate-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .certificate-name {
+                font-size: 2rem;
+            }
+            
+            .certificate-statement {
+                font-size: 1.1rem;
+            }
+            
+            .certificate-footer {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .certificate-actions {
+                flex-direction: column;
+            }
+            
+            .certificate-actions .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            :root {
+                --spacing-md: 1.5rem;
+                --spacing-lg: 2rem;
+                --spacing-xl: 3rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .greeting {
+                font-size: 1.5rem;
+            }
+            
+            .proposal-text {
+                font-size: 1.2rem;
+            }
+            
+            .proposal-highlight {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* ==================== PRINT STYLES ==================== */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .background-container,
+            .particles,
+            .certificate-actions,
+            .celebration-text {
+                display: none !important;
+            }
+            
+            .certificate {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .certificate-container {
+                max-width: 100%;
+            }
+        }
+        
+        /* ==================== ACCESSIBILITY ==================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for keyboard navigation */
+        *:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        .btn:focus {
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-container">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    
+    <!-- Particle System -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- PAGE 1: Login Page -->
+        <section id="loginPage" class="page active">
+            <div class="glass-card">
+                <div class="login-header">
+                    <h1 class="logo">2026</h1>
+                    <p class="subtitle">A Special Invitation Awaits You</p>
+                </div>
+                
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            class="form-input" 
+                            placeholder="Enter your first name"
+                            aria-required="true"
+                            autocomplete="given-name"
+                        >
+                        <span class="error-message" id="firstNameError">Please enter your first name</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            class="form-input" 
+                            placeholder="Enter your last name"
+                            aria-required="true"
+                            autocomplete="family-name"
+                        >
+                        <span class="error-message" id="lastNameError">Please enter your last name</span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <span>Continue to Your Invitation</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- PAGE 2: Proposal Page -->
+        <section id="proposalPage" class="page hidden">
+            <div class="glass-card">
+                <div class="proposal-content">
+                    <!-- Decorative Hearts -->
+                    <span class="decorative-hearts heart-1" aria-hidden="true">💝</span>
+                    <span class="decorative-hearts heart-2" aria-hidden="true">✨</span>
+                    <span class="decorative-hearts heart-3" aria-hidden="true">🎊</span>
+                    <span class="decorative-hearts heart-4" aria-hidden="true">🌟</span>
+                    
+                    <h1 class="greeting">Hello, <span id="userName"></span>! 👋</h1>
+                    
+                    <p class="proposal-text">
+                        As we stand at the threshold of a brand new year,<br>
+                        I have a special question for you...
+                    </p>
+                    
+                    <div class="proposal-highlight">
+                        Would you like to start<br>2026 with AYMEN?
+                    </div>
+                    
+                    <p class="proposal-subtext">
+                        This is your moment to embrace new beginnings,<br>
+                        adventures, and unforgettable memories! ✨
+                    </p>
+                    
+                    <div class="button-group">
+                        <button id="acceptBtn" class="btn btn-primary">
+                            <span>Yes, I Accept! 🎉</span>
+                        </button>
+                        <button id="declineBtn" class="btn btn-secondary">
+                            <span>No, Thanks</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PAGE 3: Certificate Page -->
+        <section id="certificatePage" class="page hidden">
+            <div class="certificate-container">
+                <div class="celebration-text">
+                    <h1>🎊 Congratulations! 🎊</h1>
+                    <p>Your journey with AYMEN in 2026 begins now!</p>
+                </div>
+                
+                <div id="certificateContent" class="certificate">
+                    <div class="certificate-header">
+                        <div class="certificate-badge">🏆</div>
+                        <h2 class="certificate-title">Official Certificate</h2>
+                    </div>
+                    
+                    <div class="certificate-body">
+                        <p>This certifies that</p>
+                        <div class="certificate-name" id="certificateName"></div>
+                        <p class="certificate-statement">
+                            will continue the year <strong>2026</strong> with <strong>AYMEN</strong><br>
+                            embarking on a journey filled with joy, laughter,<br>
+                            and unforgettable moments!
+                        </p>
+                    </div>
+                    
+                    <div class="certificate-footer">
+                        <div class="certificate-date">
+                            <p>Issued on</p>
+                            <strong>January 1, 2026</strong>
+                        </div>
+                        <div class="certificate-signature">
+                            <p>Authorized by</p>
+                            <strong>AYMEN</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-actions">
+                    <button id="downloadBtn" class="btn btn-primary">
+                        <span>📥 Download Certificate</span>
+                    </button>
+                    <button id="shareBtn" class="btn btn-primary">
+                        <span>📤 Share Certificate</span>
+                    </button>
+                    <button id="restartBtn" class="btn btn-secondary">
+                        <span>🔄 Start Over</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // ==================== USER DATA MANAGEMENT ====================
+        class UserData {
+            constructor() {
+                this.storageKey = 'aymen2026_user';
+            }
+            
+            save(firstName, lastName) {
+                const data = { firstName, lastName };
+                localStorage.setItem(this.storageKey, JSON.stringify(data));
+            }
+            
+            load() {
+                const data = localStorage.getItem(this.storageKey);
+                return data ? JSON.parse(data) : null;
+            }
+            
+            clear() {
+                localStorage.removeItem(this.storageKey);
+            }
+            
+            getFullName() {
+                const data = this.load();
+                return data ? `${data.firstName} ${data.lastName}` : '';
+            }
+        }
+        
+        const userData = new UserData();
+        
+        // ==================== PAGE NAVIGATION ====================
+        class PageManager {
+            constructor() {
+                this.pages = {
+                    login: document.getElementById('loginPage'),
+                    proposal: document.getElementById('proposalPage'),
+                    certificate: document.getElementById('certificatePage')
+                };
+                this.currentPage = 'login';
+            }
+            
+            show(pageName) {
+                // Hide all pages
+                Object.values(this.pages).forEach(page => {
+                    page.classList.remove('active');
+                    page.classList.add('hidden');
+                });
+                
+                // Show target page
+                const targetPage = this.pages[pageName];
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                    setTimeout(() => {
+                        targetPage.classList.add('active');
+                    }, 50);
+                    this.currentPage = pageName;
+                }
+            }
+        }
+        
+        const pageManager = new PageManager();
+        
+        // ==================== PARTICLE SYSTEM ====================
+        class ParticleSystem {
+            constructor() {
+                this.container = document.getElementById('particles');
+                this.particleCount = 30;
+                this.init();
+            }
+            
+            init() {
+                for (let i = 0; i < this.particleCount; i++) {
+                    this.createParticle();
+                }
+            }
+            
+            createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random properties
+                const size = Math.random() * 4 + 2;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 8;
+                const duration = Math.random() * 4 + 6;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random color
+                const colors = ['#FF6B9D', '#FFC371', '#C96DD8'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                this.container.appendChild(particle);
+                
+                // Remove and recreate after animation
+                setTimeout(() => {
+                    particle.remove();
+                    this.createParticle();
+                }, (duration + delay) * 1000);
+            }
+        }
+        
+        const particleSystem = new ParticleSystem();
+        
+        // ==================== FORM VALIDATION ====================
+        class FormValidator {
+            constructor(formId) {
+                this.form = document.getElementById(formId);
+                this.inputs = {
+                    firstName: document.getElementById('firstName'),
+                    lastName: document.getElementById('lastName')
+                };
+                this.errors = {
+                    firstName: document.getElementById('firstNameError'),
+                    lastName: document.getElementById('lastNameError')
+                };
+            }
+            
+            validate() {
+                let isValid = true;
+                
+                // Validate first name
+                if (this.inputs.firstName.value.trim() === '') {
+                    this.showError('firstName');
+                    isValid = false;
+                } else {
+                    this.hideError('firstName');
+                }
+                
+                // Validate last name
+                if (this.inputs.lastName.value.trim() === '') {
+                    this.showError('lastName');
+                    isValid = false;
+                } else {
+                    this.hideError('lastName');
+                }
+                
+                return isValid;
+            }
+            
+            showError(field) {
+                this.inputs[field].classList.add('error');
+                this.errors[field].classList.add('show');
+            }
+            
+            hideError(field) {
+                this.inputs[field].classList.remove('error');
+                this.errors[field].classList.remove('show');
+            }
+            
+            getValues() {
+                return {
+                    firstName: this.inputs.firstName.value.trim(),
+                    lastName: this.inputs.lastName.value.trim()
+                };
+            }
+            
+            reset() {
+                this.form.reset();
+                Object.keys(this.inputs).forEach(field => {
+                    this.hideError(field);
+                });
+            }
+        }
+        
+        const formValidator = new FormValidator('loginForm');
+        
+        // ==================== CONFETTI ANIMATION ====================
+        class ConfettiSystem {
+            constructor() {
+                this.colors = ['#FF6B9D', '#FFC371', '#C96DD8', '#4CAF50', '#FFD700'];
+            }
+            
+            burst() {
+                const confettiCount = 100;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    setTimeout(() => {
+                        this.createConfetti();
+                    }, i * 30);
+                }
+            }
+            
+            createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const size = Math.random() * 8 + 4;
+                const color = this.colors[Math.floor(Math.random() * this.colors.length)];
+                const duration = Math.random() * 2 + 2;
+                
+                confetti.style.left = `${left}%`;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.background = color;
+                confetti.style.animationDuration = `${duration}s`;
+                confetti.style.top = '-50px';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration * 1000);
+            }
+        }
+        
+        const confettiSystem = new ConfettiSystem();
+        
+        // ==================== CERTIFICATE GENERATION ====================
+        class CertificateGenerator {
+            constructor() {
+                this.canvas = document.createElement('canvas');
+                this.ctx = this.canvas.getContext('2d');
+            }
+            
+            async generate() {
+                const certificate = document.getElementById('certificateContent');
+                
+                // Use html2canvas library (loaded dynamically)
+                await this.loadHtml2Canvas();
+                
+                return html2canvas(certificate, {
+                    scale: 2,
+                    backgroundColor: '#ffffff',
+                    logging: false
+                });
+            }
+            
+            loadHtml2Canvas() {
+                return new Promise((resolve, reject) => {
+                    if (window.html2canvas) {
+                        resolve();
+                        return;
+                    }
+                    
+                    const script = document.createElement('script');
+                    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+            }
+            
+            download(canvas) {
+                const link = document.createElement('a');
+                const fullName = userData.getFullName().replace(/\s+/g, '_');
+                link.download = `2026_Certificate_${fullName}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        }
+        
+        const certificateGenerator = new CertificateGenerator();
+        
+        // ==================== EVENT HANDLERS ====================
+        
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (formValidator.validate()) {
+                const { firstName, lastName } = formValidator.getValues();
+                userData.save(firstName, lastName);
+                
+                // Update proposal page with user name
+                document.getElementById('userName').textContent = firstName;
+                
+                // Navigate to proposal page
+                pageManager.show('proposal');
+            }
+        });
+        
+        // Accept Button
+        document.getElementById('acceptBtn').addEventListener('click', () => {
+            const fullName = userData.getFullName();
+            document.getElementById('certificateName').textContent = fullName;
+            
+            // Navigate to certificate page
+            pageManager.show('certificate');
+            
+            // Trigger confetti
+            setTimeout(() => {
+                confettiSystem.burst();
+            }, 300);
+        });
+        
+        // Decline Button
+        document.getElementById('declineBtn').addEventListener('click', () => {
+            if (confirm('Are you sure? You\'ll miss an amazing journey in 2026! 🥺')) {
+                alert('Maybe next time! 👋');
+                pageManager.show('login');
+                formValidator.reset();
+                userData.clear();
+            }
+        });
+        
+        // Download Certificate Button
+        document.getElementById('downloadBtn').addEventListener('click', async () => {
+            try {
+                const downloadBtn = document.getElementById('downloadBtn');
+                const originalText = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = '<span>⏳ Generating...</span>';
+                downloadBtn.disabled = true;
+                
+                const canvas = await certificateGenerator.generate();
+                certificateGenerator.download(canvas);
+                
+                downloadBtn.innerHTML = '<span>✅ Downloaded!</span>';
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalText;
+                    downloadBtn.disabled = false;
+                }, 2000);
+            } catch (error) {
+                alert('Failed to generate certificate. Please try again.');
+                console.error(error);
+            }
+        });
+        
+        // Share Certificate Button
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            const fullName = userData.getFullName();
+            const shareText = `🎊 I'm starting 2026 with AYMEN! Join me on this amazing journey! 🌟`;
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: '2026 with AYMEN',
+                        text: shareText,
+                        url: window.location.href
+                    });
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        this.fallbackShare(shareText);
+                    }
+                }
+            } else {
+                this.fallbackShare(shareText);
+            }
+        });
+        
+        // Fallback share function
+        function fallbackShare(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Share text copied to clipboard! 📋');
+        }
+        
+        // Restart Button
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            if (confirm('Start over? Your current certificate will be cleared.')) {
+                pageManager.show('login');
+                formValidator.reset();
+                userData.clear();
+            }
+        });
+        
+        // Add real-time validation
+        ['firstName', 'lastName'].forEach(field => {
+            const input = document.getElementById(field);
+            input.addEventListener('blur', () => {
+                if (input.value.trim() === '') {
+                    formValidator.showError(field);
+                } else {
+                    formValidator.hideError(field);
+                }
+            });
+            
+            input.addEventListener('input', () => {
+                if (input.value.trim() !== '') {
+                    formValidator.hideError(field);
+                }
+            });
+        });
+        
+        // ==================== KEYBOARD NAVIGATION ====================
+        document.addEventListener('keydown', (e) => {
+            // Enter key to submit on login page
+            if (pageManager.currentPage === 'login' && e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+            
+            // Escape key to go back
+            if (e.key === 'Escape' && pageManager.currentPage !== 'login') {
+                if (confirm('Go back to the previous page?')) {
+                    if (pageManager.currentPage === 'proposal') {
+                        pageManager.show('login');
+                    } else if (pageManager.currentPage === 'certificate') {
+                        pageManager.show('proposal');
+                    }
+                }
+            }
+        });
+        
+        // ==================== INITIALIZATION ====================
+        window.addEventListener('load', () => {
+            // Check if user data exists
+            const savedData = userData.load();
+            if (savedData) {
+                // Optionally, you could auto-navigate to proposal page
+                // For now, we'll just clear it and start fresh
+                // userData.clear();
+            }
+            
+            // Focus first input on load
+            document.getElementById('firstName').focus();
+        });
+        
+        // ==================== SERVICE WORKER (OPTIONAL) ====================
+        // For offline functionality if hosted
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // navigator.registerServiceWorker('./sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
